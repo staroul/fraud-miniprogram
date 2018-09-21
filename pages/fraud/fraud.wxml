@@ -1,0 +1,124 @@
+<view class="tab-container">
+  <!-- 底部导航栏 -->
+  <i-tab-bar class="tab-bar" fixed="true" current="{{ current }}" bindchange="handleChange" color="#2d8cf0">
+    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+    <i-tab-bar-item key="classification" icon="createtask" current-icon="createtask_fill" title="类别"></i-tab-bar-item>
+    <i-tab-bar-item key="personal" icon="mine" current-icon="mine_fill" title="我"></i-tab-bar-item>
+  </i-tab-bar>
+  <!-- 首页 -->
+  <scroll-view scroll-y class="homepage" wx:if="{{ current=='homepage' }}" scroll-top="{{scrollTop}}" enable-back-to-top="true" style="height:{{scrollHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" bindtap="handleNavi">
+    <view class="spin-space">
+      <i-spin size="large" wx:if="{{spinShow}}"></i-spin>
+    </view>
+    <view wx:for="{{homeList}}" wx:key="{{item.caseID}}">
+      <i-card full i-class="card-item" title="{{item.title}}" id="{{item.caseID}}">
+        <view slot="content" id="{{item.caseID}}">{{item.content}}</view>
+        <view slot="footer" id="{{item.caseID}}">{{item.classification}} {{item.date}}</view>
+      </i-card>
+      <view class="space"></view>
+    </view>
+    <view class="load-space">
+      <i-spin size="large" wx:if="{{loadShow}}"></i-spin>
+    </view>
+  </scroll-view>
+  <!-- 分类 -->
+  <view class="classification" wx:elif="{{ current == 'classification' }}" bindtap="handleClass">
+    <i-grid>
+      <i-row>
+        <i-grid-item i-class="grid-item" id="alipay">
+          <i-grid-icon id="alipay">
+            <image id="alipay" style="width: 30px; height: 30px;" src="../../images/zfb.png" ></image>
+            <i-grid-label id="alipay" i-class="grid-label">支付宝</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="wechat">
+          <i-grid-icon id="wechat">
+            <image id="wechat" style="width: 30px; height: 30px;" src="../../images/wx.png"></image>
+            <i-grid-label id="wechat" i-class="grid-label">微信</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="mobilebank">
+          <i-grid-icon id="mobilebank">
+            <i-icon id="mobilebank" size="30" type="mobilephone" color="#2d8cf0"/>
+            <i-grid-label id="mobilebank" i-class="grid-label">手机银行</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+      </i-row>
+      <i-row>
+        <i-grid-item i-class="grid-item" id="business">
+          <i-grid-icon id="business">
+            <i-icon id="business" size="30" type="tasklist" color="#5cadff"/>
+            <i-grid-label id="business" i-class="grid-label">商业</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="telecom">
+          <i-grid-icon id="telecom">
+            <i-icon id="telecom" size="30" type="customerservice" color="#2d8cf0"/>
+            <i-grid-label id="telecom" i-class="grid-label">电信</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="society">
+          <i-grid-icon id="society">
+            <i-icon id="society" size="30" type="group" color="#5cadff"/>
+            <i-grid-label id="society" i-class="grid-label">社会</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+      </i-row>
+      <i-row>
+        <i-grid-item i-class="grid-item" id="internet">
+          <i-grid-icon id="internet">
+            <i-icon id="internet" size="30" type="computer" color="#2d8cf0"/>
+            <i-grid-label id="internet" i-class="grid-label">网络</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="onlineshop">
+          <i-grid-icon id="onlineshop">
+            <i-icon id="onlineshop" size="30" type="commodity" color="#5cadff"/>
+            <i-grid-label id="onlineshop" i-class="grid-label">网购</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="video">
+          <i-grid-icon id="video">
+            <i-icon id="video" size="30" type="live" color="#2d8cf0"/>
+            <i-grid-label id="video" i-class="grid-label">视频</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+      </i-row>
+      <i-row>
+        <i-grid-item i-class="grid-item" id="talkarea">
+          <i-grid-icon id="talkarea">
+            <i-icon id="talkarea" size="30" type="barrage" color="#5cadff"/>
+            <i-grid-label id="talkarea" i-class="grid-label">论坛</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+        <i-grid-item i-class="grid-item" id="search">
+          <i-grid-icon id="search">
+            <i-icon id="search" size="30" type="search" color="#2d8cf0"/>
+            <i-grid-label id="search" i-class="grid-label">检索</i-grid-label>
+          </i-grid-icon>
+        </i-grid-item>
+      </i-row>
+    </i-grid>
+  </view>
+  <!-- 个人 -->
+  <view class="personal" wx:elif="{{ current == 'personal' }}">
+    <i-panel>
+      <view class="panel-ava">
+        <image style="width: 80px; height: 80px;" src="{{userInfo.avatarUrl}}"></image>
+        <view style="padding: 15px;">{{userInfo.nickName}}</view>
+      </view>
+    </i-panel>
+    <i-panel title=" ">
+      <view class="panel-item">
+        <i-icon size="30" type="editor" color="#2d8cf0"/>
+        <view style="padding: 15px;">发表帖子</view>
+      </view>
+    </i-panel>
+    <i-panel>
+      <view class="panel-item">
+        <i-icon size="30" type="live" color="#2d8cf0"/>
+        <view style="padding: 15px;">上传视频</view>
+      </view>
+    </i-panel>
+  </view>
+</view>

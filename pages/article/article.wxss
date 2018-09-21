@@ -1,0 +1,30 @@
+@import "/wxParse/wxParse.wxss";
+.article-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.article-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 40px;
+  font-size: 14px;
+  color: #80848f;
+}
+.article-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 15px;
+}
+.article-content {
+  margin: 0 20px 20px;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  line-height: 25px;
+  color: #333435;
+}

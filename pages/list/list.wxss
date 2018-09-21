@@ -1,0 +1,18 @@
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.card-item {
+  padding: 6px 4px;
+}
+.space {
+  height: 10px;
+}
+.load-space {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}

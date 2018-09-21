@@ -1,0 +1,12 @@
+<scroll-view scroll-y enable-back-to-top="true" style="height:{{scrollHeight}}px;" bindscrolltolower="lower" bindtap="handleNavi">
+  <view wx:for="{{homeList}}" wx:key="{{item.caseID}}">
+    <i-card full i-class="card-item" title="{{item.title}}" id="{{item.caseID}}">
+      <view slot="content" id="{{item.caseID}}">{{item.content}}</view>
+      <view slot="footer" id="{{item.caseID}}">{{item.classification}} {{item.date}}</view>
+    </i-card>
+    <view class="space"></view>
+  </view>
+  <view class="load-space">
+    <i-spin size="large" wx:if="{{loadShow}}"></i-spin>
+  </view>
+</scroll-view>

@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/fraud/fraud",
+    "pages/article/article",
+    "pages/list/list"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2d8cf0",
+    "navigationBarTitleText": "Fraud",
+    "navigationBarTextStyle":"white"
+  }
+}
